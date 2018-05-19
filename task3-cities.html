@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8">
+    <title>Города</title>
+    </head>
+    <body>
+        <button id='load'>Загрузить</button>
+        <script>
+const loadButton = document.querySelector('#load');
+const url = 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json';
+loadButton.addEventListener('click', ()=> {
+    loadList(url)
+    .then(cities => {
+        document.write(cities);
+    });
+});
+function loadList(url) {
+    return new Promise(resolve => {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url);
+        xhr.addEventListener ('load', ()=> {
+            document.write(xhr.responseText);
+            resolve();
+        
+        }); 
+        xhr.send();
+    });
+}
+            </script>
+</body>
+</html>
